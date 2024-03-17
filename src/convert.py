@@ -36,8 +36,8 @@ def convert_and_upload_supervisely_project(
         tree = ET.parse(ann_path)
         root = tree.getroot()
 
-        img_height = 1024  # int(root.find(".//height").text)
-        img_wight = 1024  # int(root.find(".//width").text)
+        img_height = int(root.find(".//height").text)
+        img_wight = int(root.find(".//width").text)
 
         coords_xml = root.findall(".//bndbox")
         for curr_coord in coords_xml:
@@ -57,40 +57,27 @@ def convert_and_upload_supervisely_project(
     meta = sly.ProjectMeta(obj_classes=[obj_class])
     api.project.update_meta(project.id, meta.to_json())
 
-    images_pathes = glob.glob(dataset_path + "/*/JPEGImages/*.jpg")
-    image_name_to_path = {}
-    for im_path in images_pathes:
-        image_name_to_path[get_file_name(im_path)] = im_path
-
-    for ds_name in os.listdir(split_path):
-
-        if ds_name == "trainval.txt":
-            continue
+    for ds_name in os.listdir(dataset_path):
 
         dataset = api.dataset.create(
-            project.id, get_file_name(ds_name), change_name_if_conflict=True
+            project.id, get_file_name(ds_name.split(" ")[0]), change_name_if_conflict=True
         )
 
-        curr_split_path = os.path.join(split_path, ds_name)
-        with open(curr_split_path) as f:
-            content = f.read().split("\n")
-            images_names = [im_name for im_name in content if len(im_name) > 1]
+        curr_dataset_path = os.path.join(dataset_path, ds_name)
 
-        progress = sly.Progress("Create dataset {}".format(ds_name), len(images_names))
+        images_pathes = glob.glob(curr_dataset_path + "/JPEGImages/*.jpg")
 
-        for images_names_batch in sly.batched(images_names, batch_size=batch_size):
-            img_pathes_batch = []
-            im_names_batch = []
-            for image_name in images_names_batch:
-                im_names_batch.append(image_name + images_ext)
-                img_pathes_batch.append(image_name_to_path[get_file_name(image_name)])
+        progress = sly.Progress("Create dataset {}".format(ds_name), len(images_pathes))
 
-            img_infos = api.image.upload_paths(dataset.id, images_names_batch, img_pathes_batch)
+        for img_pathes_batch in sly.batched(images_pathes, batch_size=batch_size):
+            img_names_batch = [get_file_name_with_ext(im_path) for im_path in img_pathes_batch]
+
+            img_infos = api.image.upload_paths(dataset.id, img_names_batch, img_pathes_batch)
             img_ids = [im_info.id for im_info in img_infos]
 
             anns = [create_ann(image_path) for image_path in img_pathes_batch]
             api.annotation.upload_anns(img_ids, anns)
 
-            progress.iters_done_report(len(images_names_batch))
+            progress.iters_done_report(len(img_names_batch))
 
     return project
