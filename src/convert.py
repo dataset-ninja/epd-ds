@@ -39,11 +39,6 @@ def convert_and_upload_supervisely_project(
         img_height = 1024  # int(root.find(".//height").text)
         img_wight = 1024  # int(root.find(".//width").text)
 
-        if image_path.split("/")[-3][4] == "S":
-            drone = sly.Tag(epd_s)
-        else:
-            drone = sly.Tag(epd_c)
-
         coords_xml = root.findall(".//bndbox")
         for curr_coord in coords_xml:
             left = int(curr_coord[0].text)
@@ -54,14 +49,12 @@ def convert_and_upload_supervisely_project(
             label = sly.Label(rect, obj_class)
             labels.append(label)
 
-        return sly.Annotation(img_size=(img_height, img_wight), labels=labels, img_tags=[drone])
+        return sly.Annotation(img_size=(img_height, img_wight), labels=labels)
 
     obj_class = sly.ObjClass("pylon", sly.Rectangle, color=(255, 0, 0))
-    epd_c = sly.TagMeta("epd c", sly.TagValueType.NONE)
-    epd_s = sly.TagMeta("epd s", sly.TagValueType.NONE)
 
     project = api.project.create(workspace_id, project_name, change_name_if_conflict=True)
-    meta = sly.ProjectMeta(obj_classes=[obj_class], tag_metas=[epd_c, epd_s])
+    meta = sly.ProjectMeta(obj_classes=[obj_class])
     api.project.update_meta(project.id, meta.to_json())
 
     images_pathes = glob.glob(dataset_path + "/*/JPEGImages/*.jpg")

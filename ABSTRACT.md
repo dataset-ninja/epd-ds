@@ -10,7 +10,7 @@ Moreover, the manual interpretation of high-resolution remote sensing images dem
 
 In their exploration of electric pylon detection using deep learning techniques, the authors undertook a meticulous effort to curate a high-resolution remote sensing image dataset specifically tailored for this purpose, termed the Electric Pylon Detection (EPD) dataset. The images comprising this dataset were sourced from both Google Earth and the image archives of the Pleiades satellite. Notably, all images within the EPD dataset are processed multi-spectral remote sensing products, commonly employed in practical detection tasks. The Pleiades images are orthoimages, while those obtained from Google Earth represent multi-spectral products captured by various sensors. This integration of data from multiple sources serves to enhance the testing of the generalization capabilities of deep learning detectors.
 
-<img src="https://github.com/dataset-ninja/epd-ds/assets/120389559/9e5b2384-98c3-41d5-b43e-536fc29f7389" alt="image" width="800">
+<img src="https://github.com/dataset-ninja/epd-ds/assets/120389559/9e5b2384-98c3-41d5-b43e-536fc29f7389" alt="image" width="1000">
 
 <span style="font-size: smaller; font-style: italic;">Image samples in the EPD dataset. The first and second images were captured by Pleiades satellite, while the third image and fourth images were collected from Google Earth. All image samples in the dataset were obtained from these two sources and image formats are all processed multi-spectral image products.</span>
 
@@ -29,7 +29,7 @@ To assess the adaptability of various detectors to these influencing factors, th
 | mountains + multicolored fields |       2        |        3          |
 | lakes                         |         2        |        6          |
 | complex terrain               |         4        |        4          |
-|-------------------------------|------------------|-------------------|
+
 | 30 Images from Google Earth   |                 |                   |
 | frame architectures           |         6        |       32          |
 | multicolored fields           |         6        |       14          |
