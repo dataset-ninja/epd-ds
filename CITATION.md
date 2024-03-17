@@ -1,12 +1,19 @@
 If you make use of the EPD data, please cite the following reference:
 
 ``` bibtex 
-@dataset{EPD,
-  author={Sijia Qiao and Yu Sun and Haopeng Zhang},
-  title={EPD: Electric Pylon Detection Dataset},
-  year={2020},
-  url={https://www.kaggle.com/datasets/qiaosijia/epd-dataset}
-}
+@article{Qiao_2020, 
+  title={Deep Learning Based Electric Pylon Detection in Remote Sensing Images}, 
+  volume={12}, 
+  ISSN={2072-4292}, 
+  url={http://dx.doi.org/10.3390/rs12111857}, 
+  DOI={10.3390/rs12111857}, 
+  number={11}, 
+  journal={Remote Sensing}, 
+  publisher={MDPI AG}, 
+  author={Qiao, Sijia and Sun, Yu and Zhang, Haopeng}, 
+  year={2020}, 
+  month={Jun}, 
+  pages={1857}}
 ```
 
 [Source](https://www.kaggle.com/datasets/qiaosijia/epd-dataset)
