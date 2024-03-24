@@ -16,7 +16,7 @@ In their exploration of electric pylon detection using deep learning techniques,
 
 The detection of electric pylons in high-resolution optical remote sensing images presents a myriad of challenges due to the diverse features exhibited by these targets. Firstly, the widespread deployment of pylons results in significant variations in size and specifications. Even within the same spatial resolution, the area occupied by different pylons within an image may vary considerably. Additionally, the background environment surrounding pylons varies greatly due to the extensive coverage of the power network. Factors such as lighting conditions and topography further influence the characteristics of electric pylons. Lighting conditions impact the color appearance of pylons, while topography affects the tilt angle of pylons relative to the observation angle of satellites.
 
-To assess the adaptability of various detectors to these influencing factors, the authors meticulously selected electric pylon targets in different states when constructing their dataset. The Electric Pylon Detection (EPD) dataset comprises a total of 1500 images, with 720 images captured by the Pleiades satellite along the Huimao Line in Guangdong Province, China—a major power network route in southern China. The remaining images were sourced from Google Earth to broaden the dataset's representativeness. The spatial resolution of images in the EPD dataset is 1 meter per pixel. Furthermore, to thoroughly evaluate the detectors' adaptability in real-world scenarios, the authors curated a subset of 50 relatively complex images from the EPD dataset, designated as ***epd-c***. This subset includes 20 images from the Pleiades satellite and 30 images from Google Earth. Selection criteria for images in ***epd-c*** include background interference, such as the presence of similar features or interfering objects, as well as the unique characteristics or varying scales of the targets to be detected.
+To assess the adaptability of various detectors to these influencing factors, the authors meticulously selected electric pylon targets in different states when constructing their dataset. The Electric Pylon Detection (EPD) dataset comprises a total of 1500 images, with 720 images captured by the Pleiades satellite along the Huimao Line in Guangdong Province, China—a major power network route in southern China. The remaining images were sourced from Google Earth to broaden the dataset's representativeness. The spatial resolution of images in the EPD dataset is 1 meter per pixel. Furthermore, to thoroughly evaluate the detectors' adaptability in real-world scenarios, the authors curated a subset of 50 relatively complex images from the EPD dataset, designated as ***EPD-C***. This subset includes 20 images from the Pleiades satellite and 30 images from Google Earth. Selection criteria for images in ***EPD-C*** include background interference, such as the presence of similar features or interfering objects, as well as the unique characteristics or varying scales of the targets to be detected.
 
 | Features and Background       | Number of Images | Number of Targets |
 |-------------------------------|------------------|-------------------|
@@ -30,22 +30,26 @@ To assess the adaptability of various detectors to these influencing factors, th
 | lakes                         |         2        |        6          |
 | complex terrain               |         4        |        4          |
 
-| 30 Images from Google Earth   |                 |                   |
-| frame architectures           |         6        |       32          |
-| multicolored fields           |         6        |       14          |
-| shadows                       |         1        |        2          |
-| highways                      |         2        |        5          |
-| special electric pylons      |         3        |        8          |
-| small targets                 |         4        |       27          |
-| large size variation          |         2        |       18          |
-| complex terrain               |         6        |       15          |
+| Features and Background    | Number of Images | Number of Targets |
+|----------------------------|------------------|-------------------|
+| frame architectures        | 6                | 32                |
+| multicolored fields        | 6                | 14                |
+| shadows                    | 1                | 2                 |
+| highways                   | 2                | 5                 |
+| special electric pylons   | 3                | 8                 |
+| small targets              | 4                | 27                |
+| large size variation       | 2                | 18                |
+| complex terrain            | 6                | 15                |
+
 
 <span style="font-size: smaller; font-style: italic;">Details of the complex test subset EPD-C.</span>
 
-Apart from the inherent characteristics of electric pylons, the surrounding background presents additional challenges to the detection task, notably in terms of background color and interference from surrounding objects. The light-colored frame structure of electric pylons can lead to significant interference with detection results, particularly when juxtaposed against light backgrounds and frame structure buildings. Specifically, the authors designate the remaining 1450 images in the EPD dataset, excluding those in ***epd-c***, as a standard subset named ***epd-c***. This subset encompasses more than 3000 electric pylons and serves as the basis for training detectors and conducting random experiments.
+Apart from the inherent characteristics of electric pylons, the surrounding background presents additional challenges to the detection task, notably in terms of background color and interference from surrounding objects. The light-colored frame structure of electric pylons can lead to significant interference with detection results, particularly when juxtaposed against light backgrounds and frame structure buildings. Specifically, the authors designate the remaining 1450 images in the EPD dataset, excluding those in ***EPD-C***, as a standard subset named ***EPD-C***. This subset encompasses more than 3000 electric pylons and serves as the basis for training detectors and conducting random experiments.
 
 <img src="https://github.com/dataset-ninja/epd-ds/assets/120389559/953aee76-e818-4f62-8ae0-12c00d7cac8b" alt="image" width="800">
 
 <span style="font-size: smaller; font-style: italic;">Image samples in the complex test subset EPD-C. The left one was captured by Pleiades satellite, where the detection difficulty mainly lies in the similarity of color characteristics between the background and electric pylon targets. The right one was collected from Google Earth, where the detection difficulty mainly reflects on interference from frame structure buildings.</span>
+
+Moreover, these two samples also indicate that, in addition to the characteristics of electric pylons themselves, the surrounding background also brings challenges to the detection task, which is mainly reflected in the background color and interference targets. Due to the light-colored frame structure of electric *pylon* target, light background and frame structure buildings can significantly interfere with detection results. Particularly, the authors regard the remaining 1450 images in EPD dataset excluding ***EPD-C*** as a standard subset named ***EPD-S***, which involves more than 3000 electric pylons. ***EPD-S*** subset was used to train detectors and perform random experiments.
 
 

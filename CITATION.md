@@ -13,7 +13,8 @@ If you make use of the EPD data, please cite the following reference:
   author={Qiao, Sijia and Sun, Yu and Zhang, Haopeng}, 
   year={2020}, 
   month={Jun}, 
-  pages={1857}}
+  pages={1857}
+}
 ```
 
 [Source](https://www.kaggle.com/datasets/qiaosijia/epd-dataset)
